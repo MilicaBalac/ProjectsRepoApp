@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand text-light" href="/#">PH</a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-light" href="/#">Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="#">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light " href="#">Contact</a>
+      </li>
+    </ul>
+    <a class="nav-link text-light" *ngIf="isLoggedOut()" href="/login">Log in</a>
+    <a class="nav-link text-light" *ngIf="isLoggedIn()" (click)="logOut()" href="/#">Log out</a>
+  </div>
+</nav>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Project helper</h1>
+    <p>Organize your projects professionally</p>
+  </div>
+  <router-outlet></router-outlet>
+</div>

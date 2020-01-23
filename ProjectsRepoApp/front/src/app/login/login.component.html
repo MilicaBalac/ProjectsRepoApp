@@ -1,0 +1,13 @@
+<div class="d-flex w-100 h-100 justify-content-center align-items-center login">
+    <form class="form-signin" (ngSubmit)="login()">
+        <h1 class="h3 mb-3 font-weight-normal">login</h1>
+        <input type="username" name="username" class="form-control" placeholder="Username" [(ngModel)]="user.username"
+            required autofocus>
+        <input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="user.password"
+            required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+    </form>
+    <div *ngIf=wrongUsernameOrPass role="alert">
+        Wrong username or password.
+    </div>
+</div>

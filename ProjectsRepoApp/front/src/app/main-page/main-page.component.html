@@ -1,0 +1,45 @@
+<div class="row">
+    <div [ngClass]="isAdministrator ? 'col-8': 'col-12'"> 
+     <div class="d-flex justify-content-between">
+     <div>  
+     Name<input type="text" name="name" [(ngModel)]="name"/>
+     <button type="button" class="btn btn-light" (click)="search()">filter</button>
+     <button type="button" class="btn btn-light" (click)="loadData()">clean</button>
+     <br/>
+     </div>
+     <div>
+      <button type="button" class="btn btn-light" [disabled]="page <= 0" (click)="prevPage()">
+        <i class="fa fa-backward"></i>
+       </button>
+     <button type="button" class="btn btn-light" (click)="nextPage()">
+      <i class="fa fa-forward"></i>
+     </button>
+   </div>
+     </div>
+     <table class="table table-striped">
+       <thead>
+         <tr>
+           <th scope="col">Name</th>
+           <th scope="col">Description</th>
+           <th scope="col">Action</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr scope="row" *ngFor="let project of projects">
+           <td>{{project.name}}</td>
+           <td>{{project.description}}</td>
+           <td>
+             <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                <button  type="button" class="btn btn-primary" [routerLink]="['/main', project.id]">Details</button>
+                <button *ngIf="isAdministrator" type="button" class="btn btn-light" (click)="markProjectForEdit(project)">edit</button>  
+                <button *ngIf="isAdministrator" type="button" class="btn btn-danger"(click)="delete(project.id)">delete</button>
+             </div>  
+           </td>
+         </tr>
+       </tbody>
+     </table>
+     </div>
+   <div class="col-4" *ngIf="isAdministrator">
+     <app-add-edit-form [isAdministrator]="isAdministrator" [projectToAdd]="project" (savedProject)="save($event)"></app-add-edit-form> 
+   </div>
+   </div>
